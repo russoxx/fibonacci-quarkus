@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: fibonacci-quarkus
+    env: docker
+    plan: free
+    envVars:
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: fibonacci-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: fibonacci-db
+          property: port
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: fibonacci-db
+          property: database
+      - key: DATABASE_USERNAME
+        fromDatabase:
+          name: fibonacci-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: fibonacci-db
+          property: password
+
+databases:
+  - name: fibonacci-db
+    databaseName: fibonaccidb
+    user: fibonacci
+    plan: free
